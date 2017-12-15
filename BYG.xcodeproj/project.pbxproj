@@ -12,6 +12,12 @@
 		95066C011FE1E197004575FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95066BFF1FE1E197004575FC /* Main.storyboard */; };
 		95066C031FE1E197004575FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95066C021FE1E197004575FC /* Assets.xcassets */; };
 		95066C061FE1E197004575FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95066C041FE1E197004575FC /* LaunchScreen.storyboard */; };
+		954761B41FE30AA300C1667D /* StaffTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761B31FE30AA300C1667D /* StaffTableVC.swift */; };
+		954761B61FE30EF100C1667D /* MentorsNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761B51FE30EF100C1667D /* MentorsNote.swift */; };
+		954761B81FE30F2400C1667D /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761B71FE30F2400C1667D /* Logs.swift */; };
+		954761BA1FE30F5200C1667D /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761B91FE30F5200C1667D /* Directory.swift */; };
+		954761BC1FE30FB800C1667D /* PrayerRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761BB1FE30FB800C1667D /* PrayerRequests.swift */; };
+		954761BE1FE30FEA00C1667D /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761BD1FE30FEA00C1667D /* Feedback.swift */; };
 		956BFC7B1FE1E273009DBCE9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7A1FE1E272009DBCE9 /* SWRevealViewController.m */; };
 		956BFC7D1FE1E44C009DBCE9 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7C1FE1E44C009DBCE9 /* BackTableVC.swift */; };
 		956BFC7F1FE1F129009DBCE9 /* Newsfeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7E1FE1F129009DBCE9 /* Newsfeed.swift */; };
@@ -27,6 +33,12 @@
 		95066C021FE1E197004575FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95066C051FE1E197004575FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95066C071FE1E197004575FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		954761B31FE30AA300C1667D /* StaffTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffTableVC.swift; sourceTree = "<group>"; };
+		954761B51FE30EF100C1667D /* MentorsNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorsNote.swift; sourceTree = "<group>"; };
+		954761B71FE30F2400C1667D /* Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logs.swift; sourceTree = "<group>"; };
+		954761B91FE30F5200C1667D /* Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
+		954761BB1FE30FB800C1667D /* PrayerRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerRequests.swift; sourceTree = "<group>"; };
+		954761BD1FE30FEA00C1667D /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		956BFC781FE1E271009DBCE9 /* BYG-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BYG-Bridging-Header.h"; sourceTree = "<group>"; };
 		956BFC791FE1E272009DBCE9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		956BFC7A1FE1E272009DBCE9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
@@ -66,19 +78,25 @@
 		95066BFA1FE1E197004575FC /* BYG */ = {
 			isa = PBXGroup;
 			children = (
-				956BFC7C1FE1E44C009DBCE9 /* BackTableVC.swift */,
+				95066BFF1FE1E197004575FC /* Main.storyboard */,
+				95066C041FE1E197004575FC /* LaunchScreen.storyboard */,
+				95066BFB1FE1E197004575FC /* AppDelegate.swift */,
 				956BFC791FE1E272009DBCE9 /* SWRevealViewController.h */,
 				956BFC7A1FE1E272009DBCE9 /* SWRevealViewController.m */,
-				95066BFB1FE1E197004575FC /* AppDelegate.swift */,
-				95066BFD1FE1E197004575FC /* ViewController.swift */,
-				95066BFF1FE1E197004575FC /* Main.storyboard */,
-				95066C021FE1E197004575FC /* Assets.xcassets */,
-				95066C041FE1E197004575FC /* LaunchScreen.storyboard */,
-				95066C071FE1E197004575FC /* Info.plist */,
 				956BFC781FE1E271009DBCE9 /* BYG-Bridging-Header.h */,
+				95066C071FE1E197004575FC /* Info.plist */,
+				956BFC7C1FE1E44C009DBCE9 /* BackTableVC.swift */,
+				954761B31FE30AA300C1667D /* StaffTableVC.swift */,
+				95066BFD1FE1E197004575FC /* ViewController.swift */,
+				95066C021FE1E197004575FC /* Assets.xcassets */,
 				956BFC7E1FE1F129009DBCE9 /* Newsfeed.swift */,
 				956BFC801FE1F183009DBCE9 /* ResponseCard.swift */,
 				956BFC821FE1F1B9009DBCE9 /* RegisterLogin.swift */,
+				954761B51FE30EF100C1667D /* MentorsNote.swift */,
+				954761B71FE30F2400C1667D /* Logs.swift */,
+				954761B91FE30F5200C1667D /* Directory.swift */,
+				954761BB1FE30FB800C1667D /* PrayerRequests.swift */,
+				954761BD1FE30FEA00C1667D /* Feedback.swift */,
 			);
 			path = BYG;
 			sourceTree = "<group>";
@@ -158,11 +176,17 @@
 			files = (
 				956BFC811FE1F183009DBCE9 /* ResponseCard.swift in Sources */,
 				956BFC831FE1F1B9009DBCE9 /* RegisterLogin.swift in Sources */,
+				954761BE1FE30FEA00C1667D /* Feedback.swift in Sources */,
+				954761B41FE30AA300C1667D /* StaffTableVC.swift in Sources */,
 				95066BFE1FE1E197004575FC /* ViewController.swift in Sources */,
 				956BFC7F1FE1F129009DBCE9 /* Newsfeed.swift in Sources */,
 				95066BFC1FE1E197004575FC /* AppDelegate.swift in Sources */,
+				954761BC1FE30FB800C1667D /* PrayerRequests.swift in Sources */,
+				954761B81FE30F2400C1667D /* Logs.swift in Sources */,
 				956BFC7D1FE1E44C009DBCE9 /* BackTableVC.swift in Sources */,
+				954761BA1FE30F5200C1667D /* Directory.swift in Sources */,
 				956BFC7B1FE1E273009DBCE9 /* SWRevealViewController.m in Sources */,
+				954761B61FE30EF100C1667D /* MentorsNote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
