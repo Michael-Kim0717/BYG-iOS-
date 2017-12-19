@@ -38,10 +38,10 @@ class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Get the announcement reference and retrieve information.
         announcementReference = Database.database().reference()
         
-        handle = announcementReference?.child("Feedback").observe(.childAdded, with: { (snapshot) in
-            // If there are items within the Newsfeed reference, grab it as a string and show it in the tableview.
-            if let item = snapshot.value as? String{
-                self.announcementList.append(item)
+        handle = announcementReference?.child("Announcements").observe(.childAdded, with: { (snapshot) in
+            // If there are items within the Announcements reference, grab it as a string and show it in the tableview.
+            if let item = snapshot.value as? [String:AnyObject]{
+                self.announcementList.append(item["announcement"] as! String)
                 self.announcementTable.reloadData()
             }
         })

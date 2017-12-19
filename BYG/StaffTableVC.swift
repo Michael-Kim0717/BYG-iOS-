@@ -13,7 +13,7 @@ class StaffTableVC: UITableViewController {
     var TableArray = [String]()
     
     override func viewDidLoad() {
-        TableArray = ["Newsfeed", "Logs", "Directory", "Prayer Requests", "Feedback"]
+        TableArray = ["Newsfeed", "Mentor's Notes", "Logs", "Directory", "Prayer Requests", "Feedback"]
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
