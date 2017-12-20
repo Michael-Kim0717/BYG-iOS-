@@ -20,12 +20,14 @@
 		954761BA1FE30F5200C1667D /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761B91FE30F5200C1667D /* Directory.swift */; };
 		954761BC1FE30FB800C1667D /* PrayerRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761BB1FE30FB800C1667D /* PrayerRequests.swift */; };
 		954761BE1FE30FEA00C1667D /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761BD1FE30FEA00C1667D /* Feedback.swift */; };
+		95505AEB1FE9C74C00991962 /* PrayerRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95505AEA1FE9C74C00991962 /* PrayerRequestCell.swift */; };
 		956BFC7B1FE1E273009DBCE9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7A1FE1E272009DBCE9 /* SWRevealViewController.m */; };
 		956BFC7D1FE1E44C009DBCE9 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7C1FE1E44C009DBCE9 /* BackTableVC.swift */; };
 		956BFC7F1FE1F129009DBCE9 /* Newsfeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7E1FE1F129009DBCE9 /* Newsfeed.swift */; };
 		956BFC811FE1F183009DBCE9 /* ResponseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC801FE1F183009DBCE9 /* ResponseCard.swift */; };
 		956BFC831FE1F1B9009DBCE9 /* RegisterLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC821FE1F1B9009DBCE9 /* RegisterLogin.swift */; };
 		95C3BFCC1FE4A68800973EAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95C3BFCB1FE4A68700973EAB /* GoogleService-Info.plist */; };
+		95D518F81FE9972E0067E456 /* DirectoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D518F71FE9972E0067E456 /* DirectoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,7 @@
 		954761B91FE30F5200C1667D /* Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
 		954761BB1FE30FB800C1667D /* PrayerRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerRequests.swift; sourceTree = "<group>"; };
 		954761BD1FE30FEA00C1667D /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
+		95505AEA1FE9C74C00991962 /* PrayerRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerRequestCell.swift; sourceTree = "<group>"; };
 		956BFC781FE1E271009DBCE9 /* BYG-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BYG-Bridging-Header.h"; sourceTree = "<group>"; };
 		956BFC791FE1E272009DBCE9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		956BFC7A1FE1E272009DBCE9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		956BFC801FE1F183009DBCE9 /* ResponseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCard.swift; sourceTree = "<group>"; };
 		956BFC821FE1F1B9009DBCE9 /* RegisterLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLogin.swift; sourceTree = "<group>"; };
 		95C3BFCB1FE4A68700973EAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		95D518F71FE9972E0067E456 /* DirectoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryCell.swift; sourceTree = "<group>"; };
 		E3441E1BB2E98C4023C447ED /* Pods_BYG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BYG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -110,6 +114,7 @@
 				954761B31FE30AA300C1667D /* StaffTableVC.swift */,
 				95066BFD1FE1E197004575FC /* ViewController.swift */,
 				95066C021FE1E197004575FC /* Assets.xcassets */,
+				95D518F61FE996D80067E456 /* Custom TableViews */,
 				951B0EDF1FE85F06002FEE40 /* Classes */,
 				956BFC7E1FE1F129009DBCE9 /* Newsfeed.swift */,
 				956BFC801FE1F183009DBCE9 /* ResponseCard.swift */,
@@ -129,6 +134,15 @@
 				951B0EE01FE85F19002FEE40 /* Announcement.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		95D518F61FE996D80067E456 /* Custom TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				95D518F71FE9972E0067E456 /* DirectoryCell.swift */,
+				95505AEA1FE9C74C00991962 /* PrayerRequestCell.swift */,
+			);
+			path = "Custom TableViews";
 			sourceTree = "<group>";
 		};
 		CE94A5EA6D58B1194176E18B /* Frameworks */ = {
@@ -286,7 +300,9 @@
 				954761B81FE30F2400C1667D /* Logs.swift in Sources */,
 				956BFC7D1FE1E44C009DBCE9 /* BackTableVC.swift in Sources */,
 				954761BA1FE30F5200C1667D /* Directory.swift in Sources */,
+				95D518F81FE9972E0067E456 /* DirectoryCell.swift in Sources */,
 				956BFC7B1FE1E273009DBCE9 /* SWRevealViewController.m in Sources */,
+				95505AEB1FE9C74C00991962 /* PrayerRequestCell.swift in Sources */,
 				954761B61FE30EF100C1667D /* MentorsNote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

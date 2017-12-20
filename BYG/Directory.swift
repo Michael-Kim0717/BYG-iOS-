@@ -7,11 +7,69 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
-class Directory : UIViewController {
+class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    // Variable Declarations.
+    @IBOutlet weak var studentTableView: UITableView!
+    
+    var studentNameList: [String] = []
+    var studentAddressList: [String] = []
+    var studentPhoneList: [String] = []
+    var studentBirthdayList: [String] = []
+    
+    // Database Variables.
+    var directoryReference : DatabaseReference!
+    var handle : DatabaseHandle!
+    
+    // TableView Setup Functions.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return studentNameList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Student", for: indexPath) as! DirectoryCell
+        
+        // Set the labels accordingly to the information gathered from the database.
+        cell.studentName?.text = studentNameList[indexPath.row]
+        cell.studentGrade?.text = "10B"
+        cell.studentAddress?.text = studentAddressList[indexPath.row]
+        cell.studentPhoneNumber?.text = studentPhoneList[indexPath.row]
+        cell.studentBirthday?.text = studentBirthdayList[indexPath.row]
+        
+        return cell;
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Make each cell around 100 px each.
+        return 100;
+    }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        directoryReference = Database.database().reference()
+        
+        // Grabs each student from the directory reference.
+        // If the grade is currently "10B", it will populate the corresponding arrays.
+        handle = directoryReference?.child("Students").observe(.childAdded, with: { (snapshot) in
+            if let item = snapshot.value as? [String:AnyObject]{
+                if ((item["grade"] as! String) == "10B"){
+                    self.studentNameList.append(snapshot.key)
+                    self.studentAddressList.append((item["address"] as! String) + ", " + (item["city"] as! String) + ", " + (item["state"] as! String))
+                    self.studentPhoneList.append(item["phone"] as! String)
+                    self.studentBirthdayList.append(item["birthday"] as! String)
+                    self.studentTableView.reloadData()
+                }
+            }
+        })
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
 }
