@@ -84,7 +84,23 @@ class ResponseCard : UIViewController {
         
         prReference = Database.database().reference()
         
-        if (mentorSwitchOutlet.isOn || pastorSwitchOutlet.isOn || staffSwitchOutlet.isOn){
+        if (!anonSwitchOutlet.isOn && (nameField.text == "" || gradeField.text == "" || prayerReqField.text == "")){
+            let emptyFieldError = UIAlertController(title: "Empty Field(s)",
+                                                       message: "Please fill in your name, grade, and prayer request or click anonymous to send anonymously.",
+                                                       preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            emptyFieldError.addAction(dismiss)
+            self.present(emptyFieldError, animated: true, completion: nil)
+        }
+        else if (anonSwitchOutlet.isOn && prayerReqField.text == ""){
+            let emptyFieldError = UIAlertController(title: "Empty Field",
+                                                       message: "Please fill in your prayer request.",
+                                                       preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            emptyFieldError.addAction(dismiss)
+            self.present(emptyFieldError, animated: true, completion: nil)
+        }
+        else if (mentorSwitchOutlet.isOn || pastorSwitchOutlet.isOn || staffSwitchOutlet.isOn){
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy h:mm:ss a"
             let currDate = dateFormatter.string(from: NSDate() as Date)
@@ -138,9 +154,25 @@ class ResponseCard : UIViewController {
                 prayerReq = prayerReqField.text!
                 prReference.child("Prayer Requests/" + currDate + "/prayerRequest").setValue(prayerReq);
             }
+            
+            nameField.text = ""
+            gradeField.text = ""
+            prayerReqField.text = ""
+            
+            let prSent = UIAlertController(title: "Prayer Request Sent!",
+                                                       message: "Your Prayer Request was sent successfully.",
+                                                       preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            prSent.addAction(dismiss)
+            self.present(prSent, animated: true, completion: nil)
         }
         else{
-            print("please click a value")
+            let unknownSender = UIAlertController(title: "Who are you sending this too?",
+                                                       message: "Please select who you want to send this prayer request to.",
+                                                       preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            unknownSender.addAction(dismiss)
+            self.present(unknownSender, animated: true, completion: nil)
         }
     }
     

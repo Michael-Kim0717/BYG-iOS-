@@ -27,6 +27,7 @@
 		956BFC7F1FE1F129009DBCE9 /* Newsfeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7E1FE1F129009DBCE9 /* Newsfeed.swift */; };
 		956BFC811FE1F183009DBCE9 /* ResponseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC801FE1F183009DBCE9 /* ResponseCard.swift */; };
 		956BFC831FE1F1B9009DBCE9 /* RegisterLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC821FE1F1B9009DBCE9 /* RegisterLogin.swift */; };
+		9589B8B11FEDCE6700735F3E /* ShowPrayerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589B8B01FEDCE6700735F3E /* ShowPrayerRequest.swift */; };
 		95C3BFCC1FE4A68800973EAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95C3BFCB1FE4A68700973EAB /* GoogleService-Info.plist */; };
 		95D518F81FE9972E0067E456 /* DirectoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D518F71FE9972E0067E456 /* DirectoryCell.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		956BFC7E1FE1F129009DBCE9 /* Newsfeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Newsfeed.swift; sourceTree = "<group>"; };
 		956BFC801FE1F183009DBCE9 /* ResponseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCard.swift; sourceTree = "<group>"; };
 		956BFC821FE1F1B9009DBCE9 /* RegisterLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLogin.swift; sourceTree = "<group>"; };
+		9589B8B01FEDCE6700735F3E /* ShowPrayerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPrayerRequest.swift; sourceTree = "<group>"; };
 		95C3BFCB1FE4A68700973EAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		95D518F71FE9972E0067E456 /* DirectoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryCell.swift; sourceTree = "<group>"; };
 		E3441E1BB2E98C4023C447ED /* Pods_BYG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BYG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,7 @@
 		952072971FEC5408008BB517 /* Custom Popups */ = {
 			isa = PBXGroup;
 			children = (
+				9589B8B01FEDCE6700735F3E /* ShowPrayerRequest.swift */,
 				952072981FEC5438008BB517 /* AddEditStudent.swift */,
 			);
 			path = "Custom Popups";
@@ -310,6 +313,7 @@
 				954761BC1FE30FB800C1667D /* PrayerRequests.swift in Sources */,
 				954761B81FE30F2400C1667D /* Logs.swift in Sources */,
 				952072991FEC5438008BB517 /* AddEditStudent.swift in Sources */,
+				9589B8B11FEDCE6700735F3E /* ShowPrayerRequest.swift in Sources */,
 				956BFC7D1FE1E44C009DBCE9 /* BackTableVC.swift in Sources */,
 				954761BA1FE30F5200C1667D /* Directory.swift in Sources */,
 				95D518F81FE9972E0067E456 /* DirectoryCell.swift in Sources */,

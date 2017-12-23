@@ -19,6 +19,8 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
     var studentPhoneList: [String] = []
     var studentBirthdayList: [String] = []
     
+    var index: Int?
+    
     // Database Variables.
     var directoryReference : DatabaseReference!
     var handle : DatabaseHandle!
@@ -46,6 +48,27 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
         return 100;
     }
     
+    @IBAction func editButton(_ sender: UIButton) {
+        if let cell = sender.superview?.superview as? DirectoryCell {
+            let indexPath = studentTableView.indexPath(for: cell)
+            
+            index = indexPath?.row
+            
+            performSegue(withIdentifier: "editStudent", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "editStudent"){
+            let destVC = segue.destination as! AddEditStudent
+            
+            destVC.name = studentNameList[index!]
+            destVC.phoneNum = studentPhoneList[index!]
+            destVC.birthday = studentBirthdayList[index!]
+            destVC.address = studentAddressList[index!]
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,7 +80,7 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
         // If the grade is currently "10B", it will populate the corresponding arrays.
         handle = directoryReference?.child("Students").observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value as? [String:AnyObject]{
-                if ((item["grade"] as! String) == "10B"){
+                if ((item["grade"] as? String) == "10B"){
                     self.studentNameList.append(snapshot.key)
                     self.studentAddressList.append((item["address"] as! String) + ", " + (item["city"] as! String) + ", " + (item["state"] as! String))
                     self.studentPhoneList.append(item["phone"] as! String)

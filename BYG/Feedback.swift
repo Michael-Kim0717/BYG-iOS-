@@ -24,6 +24,21 @@ class Feedback : UIViewController {
             feedbackReference?.child("Feedback").childByAutoId().setValue(feedbackField.text)
             
             feedbackField.text = ""
+            
+            let successfulAction = UIAlertController(title: "Success!",
+            message: "Feedback successfully sent.",
+            preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            successfulAction.addAction(dismiss)
+            self.present(successfulAction, animated: true, completion: nil)
+        }
+        else{
+            let emptyFieldError = UIAlertController(title: "Empty Field",
+            message: "Please fill out your feedback before pressing the 'Submit' button :)",
+            preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            emptyFieldError.addAction(dismiss)
+            self.present(emptyFieldError, animated: true, completion: nil)
         }
     }
     

@@ -16,10 +16,8 @@ class DirectoryCell: UITableViewCell {
     @IBOutlet weak var studentPhoneNumber: UILabel!
     @IBOutlet weak var studentBirthday: UILabel!
     
-    @IBAction func editStudent(_ sender: Any) {
-    }
-    @IBAction func deleteStudent(_ sender: Any) {
-    }
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

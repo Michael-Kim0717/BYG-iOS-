@@ -43,6 +43,20 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
         return 85;
     }
     
+    // Pass data to the 'Show Prayer Request' VC
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showPR", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ShowPrayerRequest {
+            destination.name = studentNameList[(prTableView.indexPathForSelectedRow?.row)!]
+            destination.grade = "10B"
+            destination.date = prayerRequestDateList[(prTableView.indexPathForSelectedRow?.row)!]
+            destination.pr = prayerRequestList[(prTableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

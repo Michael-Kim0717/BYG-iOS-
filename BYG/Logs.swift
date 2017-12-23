@@ -14,11 +14,21 @@ class Logs : UIViewController, MFMailComposeViewControllerDelegate {
     // Variable Declarations.
     @IBAction func sendEmail(_ sender: Any) {
         let mailComposeViewController = configureMailController()
-        if (MFMailComposeViewController.canSendMail()) {
-            self.present(mailComposeViewController, animated: true, completion: nil)
+        if (missingStudents.text == "" || highlights.text == "" || goalOfTheDay.text == "" || improveTime.text == "" || meeting.text == "" || prayerReq.text == ""){
+            let emptyFieldError = UIAlertController(title: "Empty Fields.",
+                                                       message: "Please fill in all fields.",
+                                                       preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            emptyFieldError.addAction(dismiss)
+            self.present(emptyFieldError, animated: true, completion: nil)
         }
-        else{
-            showMailError()
+        else {
+            if (MFMailComposeViewController.canSendMail()) {
+                self.present(mailComposeViewController, animated: true, completion: nil)
+            }
+            else{
+                showMailError()
+            }
         }
     }
     

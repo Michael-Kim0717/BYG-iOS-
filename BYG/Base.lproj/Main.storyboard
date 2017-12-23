@@ -688,7 +688,8 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="editStudent:" destination="UdF-yg-oL9" eventType="touchUpInside" id="idy-kC-hQb"/>
+                                                        <action selector="editButton:" destination="JPE-us-2Ch" eventType="touchUpInside" id="OpG-t4-6jv"/>
+                                                        <segue destination="ojj-Pv-08D" kind="presentation" identifier="editStudent" id="1Fe-fL-ZTo"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoC-iW-4wb">
@@ -699,14 +700,13 @@
                                                     <state key="normal" title="Delete">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="deleteStudent:" destination="UdF-yg-oL9" eventType="touchUpInside" id="DWB-gr-loA"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <rect key="contentStretch" x="0.0" y="0.5" width="1" height="1"/>
                                         <connections>
+                                            <outlet property="deleteButton" destination="NoC-iW-4wb" id="J7q-8H-vsu"/>
+                                            <outlet property="editButton" destination="wiF-Fw-DQU" id="qF1-L3-N55"/>
                                             <outlet property="studentAddress" destination="537-eL-ecc" id="qt3-PO-4YN"/>
                                             <outlet property="studentBirthday" destination="X8u-i9-Qkw" id="anm-9N-VJY"/>
                                             <outlet property="studentGrade" destination="NzW-pw-Pvf" id="Wvb-iw-Ug6"/>
@@ -759,25 +759,25 @@
                                         <rect key="frame" x="30" y="232" width="245" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="address-line1"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6bk-ka-Jz4">
                                         <rect key="frame" x="30" y="292" width="245" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="address-level2"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iDl-gA-oT4">
                                         <rect key="frame" x="30" y="354" width="245" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="address-level1"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Alw-uP-8lU">
                                         <rect key="frame" x="30" y="172" width="245" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="tel"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3xk-0M-0zx">
                                         <rect key="frame" x="30" y="433" width="80" height="30"/>
@@ -785,6 +785,9 @@
                                             <constraint firstAttribute="width" constant="80" id="vyy-yt-IfV"/>
                                         </constraints>
                                         <state key="normal" title="ADD"/>
+                                        <connections>
+                                            <action selector="addEditStudent:" destination="ojj-Pv-08D" eventType="touchUpInside" id="CNc-sN-8Gw"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cx6-HV-uVS">
                                         <rect key="frame" x="184" y="433" width="91" height="30"/>
@@ -833,11 +836,123 @@
                     </view>
                     <connections>
                         <outlet property="popupView" destination="4M5-Sb-eUu" id="Dc7-bF-skR"/>
+                        <outlet property="studentAddress" destination="hPx-Fh-NyC" id="BEY-Om-4YM"/>
+                        <outlet property="studentBirthday" destination="I1X-wz-Nxs" id="O1e-7w-kA4"/>
+                        <outlet property="studentCity" destination="6bk-ka-Jz4" id="5TT-az-89x"/>
+                        <outlet property="studentName" destination="y3M-ys-7BL" id="IPf-Tf-1ct"/>
+                        <outlet property="studentPhoneNumber" destination="Alw-uP-8lU" id="FWF-aP-AUm"/>
+                        <outlet property="studentState" destination="iDl-gA-oT4" id="43e-jn-u8T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="da4-oF-miJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1874.4000000000001" y="2432.5123152709361"/>
+        </scene>
+        <!--Show Prayer Request-->
+        <scene sceneID="LtN-Z7-0cS">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="meT-MJ-uDR" customClass="ShowPrayerRequest" customModule="BYG" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ujb-hQ-mNY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UhA-Hi-Whv">
+                                <rect key="frame" x="30" y="181" width="315" height="451"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bp1-Ce-Reg">
+                                        <rect key="frame" x="0.0" y="401" width="315" height="50"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="fjh-mg-dMi"/>
+                                        </constraints>
+                                        <state key="normal" title="DISMISS">
+                                            <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dismissPopup:" destination="meT-MJ-uDR" eventType="touchUpInside" id="sE5-g9-QFI"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Name Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhA-Iw-VbI">
+                                        <rect key="frame" x="30" y="30" width="152" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="rPf-7g-q3I"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10B" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAy-R7-DkE">
+                                        <rect key="frame" x="254.33333333333329" y="30" width="30.666666666666657" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="gMA-Nk-RiI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12-20-2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uol-eC-tH8">
+                                        <rect key="frame" x="30" y="81" width="91" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="nLa-qs-IHs"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prayer Request Details Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01R-NM-KPG">
+                                        <rect key="frame" x="30.000000000000014" y="132" width="214.33333333333337" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="vRp-7k-fgn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="01R-NM-KPG" firstAttribute="leading" secondItem="UhA-Hi-Whv" secondAttribute="leading" constant="30" id="1lE-hk-l2C"/>
+                                    <constraint firstAttribute="bottom" secondItem="bp1-Ce-Reg" secondAttribute="bottom" id="5KM-pW-O4H"/>
+                                    <constraint firstAttribute="height" constant="451" id="Q1c-eb-oST"/>
+                                    <constraint firstItem="bp1-Ce-Reg" firstAttribute="leading" secondItem="UhA-Hi-Whv" secondAttribute="leading" id="YwY-8X-gl8"/>
+                                    <constraint firstItem="mhA-Iw-VbI" firstAttribute="top" secondItem="UhA-Hi-Whv" secondAttribute="top" constant="30" id="blQ-MQ-2Bh"/>
+                                    <constraint firstItem="Uol-eC-tH8" firstAttribute="top" secondItem="mhA-Iw-VbI" secondAttribute="bottom" constant="30" id="d1X-Pg-rW2"/>
+                                    <constraint firstItem="01R-NM-KPG" firstAttribute="top" secondItem="Uol-eC-tH8" secondAttribute="bottom" constant="30" id="eOA-kl-BPN"/>
+                                    <constraint firstItem="AAy-R7-DkE" firstAttribute="top" secondItem="UhA-Hi-Whv" secondAttribute="top" constant="30" id="ejA-zl-t9c"/>
+                                    <constraint firstAttribute="trailing" secondItem="AAy-R7-DkE" secondAttribute="trailing" constant="30" id="iJq-Dp-XYb"/>
+                                    <constraint firstItem="mhA-Iw-VbI" firstAttribute="leading" secondItem="UhA-Hi-Whv" secondAttribute="leading" constant="30" id="kA8-1h-evI"/>
+                                    <constraint firstAttribute="trailing" secondItem="bp1-Ce-Reg" secondAttribute="trailing" id="lQn-Ev-kwr"/>
+                                    <constraint firstItem="Uol-eC-tH8" firstAttribute="leading" secondItem="UhA-Hi-Whv" secondAttribute="leading" constant="30" id="pM0-iq-JbU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UhA-Hi-Whv" firstAttribute="centerY" secondItem="ujb-hQ-mNY" secondAttribute="centerY" id="0DO-TN-Nsh"/>
+                            <constraint firstItem="UhA-Hi-Whv" firstAttribute="leading" secondItem="Y6G-gI-Soe" secondAttribute="leading" constant="30" id="Mtl-xt-k3m"/>
+                            <constraint firstItem="Y6G-gI-Soe" firstAttribute="trailing" secondItem="UhA-Hi-Whv" secondAttribute="trailing" constant="30" id="wsm-oq-K0p"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Y6G-gI-Soe"/>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="Uol-eC-tH8" id="ZGA-GD-0Bf"/>
+                        <outlet property="gradeLabel" destination="AAy-R7-DkE" id="E0U-SU-8dj"/>
+                        <outlet property="prLabel" destination="01R-NM-KPG" id="ku0-JL-e9d"/>
+                        <outlet property="prView" destination="UhA-Hi-Whv" id="jlb-fs-Hs5"/>
+                        <outlet property="studentLabel" destination="mhA-Iw-VbI" id="Byp-4a-SgU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgl-eW-BiV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-452" y="2720.6896551724139"/>
         </scene>
         <!--Prayer Requests-->
         <scene sceneID="OTz-HN-Gfs">
@@ -890,6 +1005,7 @@
                                             <outlet property="prayerRequest" destination="eA9-3P-gCe" id="LCY-8r-OMq"/>
                                             <outlet property="prayerRequestDate" destination="WtJ-Gd-0L1" id="ZGf-Uz-A73"/>
                                             <outlet property="studentName" destination="tob-TG-VZz" id="ghp-IP-mQh"/>
+                                            <segue destination="meT-MJ-uDR" kind="presentation" identifier="showPR" id="NzG-Iq-d98"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1094,6 +1210,7 @@
         <image name="welcome" width="480" height="800"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1Fe-fL-ZTo"/>
         <segue reference="BzZ-FK-IcU"/>
     </inferredMetricsTieBreakers>
 </document>
