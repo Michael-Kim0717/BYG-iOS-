@@ -58,6 +58,32 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    @IBAction func deleteButton(_ sender: UIButton) {
+        if let cell = sender.superview?.superview as? DirectoryCell {
+            let indexPath = studentTableView.indexPath(for: cell)
+            
+            index = indexPath?.row
+            
+            directoryReference.child("Students").child(studentNameList[index!]).removeValue {
+                error, _ in print(error)
+            }
+            
+            studentNameList.remove(at: index!)
+            studentBirthdayList.remove(at: index!)
+            studentAddressList.remove(at: index!)
+            studentPhoneList.remove(at: index!)
+            
+            studentTableView.deleteRows(at: [indexPath!], with: UITableViewRowAnimation.automatic)
+            
+            let successfulChange = UIAlertController(title: "Delete successful!",
+                                                     message: "Your change was successful.",
+                                                     preferredStyle: .alert)
+            let dismiss = UIAlertAction(title: "OK", style: .default, handler: nil)
+            successfulChange.addAction(dismiss)
+            self.present(successfulChange, animated: true, completion: nil)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "editStudent"){
             let destVC = segue.destination as! AddEditStudent

@@ -19,14 +19,31 @@ class RegisterLogin : UIViewController {
     @IBAction func mentorButton(_ sender: Any) {
         mentorOutlet.backgroundColor = UIColor.black
         mentorOutlet.setTitleColor(UIColor.white, for: UIControlState.normal)
+        
+        performSegue(withIdentifier: "registerMentor", sender: self)
     }
     @IBAction func staffButton(_ sender: Any) {
         staffOutlet.backgroundColor = UIColor.white
         staffOutlet.setTitleColor(UIColor.black, for: UIControlState.normal)
+        
+        performSegue(withIdentifier: "registerStaff", sender: self)
     }
     @IBAction func loginButton(_ sender: Any) {
         loginOutlet.backgroundColor = UIColor.black
         loginOutlet.setTitleColor(UIColor.white, for: UIControlState.normal)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "registerMentor") {
+            let destVC = segue.destination as! RegisterStaff
+            
+            destVC.person = "Mentor"
+        }
+        else if (segue.identifier == "registerStaff"){
+            let destVC = segue.destination as! RegisterStaff
+            
+            destVC.person = "Pastor"
+        }
     }
     
     override func viewDidLoad() {

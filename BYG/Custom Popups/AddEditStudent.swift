@@ -26,6 +26,8 @@ class AddEditStudent: UIViewController {
     @IBOutlet weak var studentCity: UITextField!
     @IBOutlet weak var studentState: UITextField!
     
+    @IBOutlet weak var addEditButton: UIButton!
+    
     var studentReference: DatabaseReference!
     
     @IBAction func addEditStudent(_ sender: UIButton) {

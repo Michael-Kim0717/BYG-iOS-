@@ -21,6 +21,7 @@
 		954761BA1FE30F5200C1667D /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761B91FE30F5200C1667D /* Directory.swift */; };
 		954761BC1FE30FB800C1667D /* PrayerRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761BB1FE30FB800C1667D /* PrayerRequests.swift */; };
 		954761BE1FE30FEA00C1667D /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954761BD1FE30FEA00C1667D /* Feedback.swift */; };
+		954A8E641FEEF62E0087429F /* RegisterStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A8E631FEEF62E0087429F /* RegisterStaff.swift */; };
 		95505AEB1FE9C74C00991962 /* PrayerRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95505AEA1FE9C74C00991962 /* PrayerRequestCell.swift */; };
 		956BFC7B1FE1E273009DBCE9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7A1FE1E272009DBCE9 /* SWRevealViewController.m */; };
 		956BFC7D1FE1E44C009DBCE9 /* BackTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BFC7C1FE1E44C009DBCE9 /* BackTableVC.swift */; };
@@ -50,6 +51,7 @@
 		954761B91FE30F5200C1667D /* Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
 		954761BB1FE30FB800C1667D /* PrayerRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerRequests.swift; sourceTree = "<group>"; };
 		954761BD1FE30FEA00C1667D /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
+		954A8E631FEEF62E0087429F /* RegisterStaff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterStaff.swift; path = "/Users/michaelkim/Desktop/BYG/BYG/Custom Popups/RegisterStaff.swift"; sourceTree = "<absolute>"; };
 		95505AEA1FE9C74C00991962 /* PrayerRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerRequestCell.swift; sourceTree = "<group>"; };
 		956BFC781FE1E271009DBCE9 /* BYG-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BYG-Bridging-Header.h"; sourceTree = "<group>"; };
 		956BFC791FE1E272009DBCE9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		952072971FEC5408008BB517 /* Custom Popups */ = {
 			isa = PBXGroup;
 			children = (
+				954A8E631FEEF62E0087429F /* RegisterStaff.swift */,
 				9589B8B01FEDCE6700735F3E /* ShowPrayerRequest.swift */,
 				952072981FEC5438008BB517 /* AddEditStudent.swift */,
 			);
@@ -280,12 +283,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BYG/Pods-BYG-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -311,6 +316,7 @@
 				956BFC7F1FE1F129009DBCE9 /* Newsfeed.swift in Sources */,
 				95066BFC1FE1E197004575FC /* AppDelegate.swift in Sources */,
 				954761BC1FE30FB800C1667D /* PrayerRequests.swift in Sources */,
+				954A8E641FEEF62E0087429F /* RegisterStaff.swift in Sources */,
 				954761B81FE30F2400C1667D /* Logs.swift in Sources */,
 				952072991FEC5438008BB517 /* AddEditStudent.swift in Sources */,
 				9589B8B11FEDCE6700735F3E /* ShowPrayerRequest.swift in Sources */,
