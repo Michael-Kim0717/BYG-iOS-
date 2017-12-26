@@ -31,6 +31,8 @@ class RegisterLogin : UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         loginOutlet.backgroundColor = UIColor.black
         loginOutlet.setTitleColor(UIColor.white, for: UIControlState.normal)
+        
+        performSegue(withIdentifier: "loginUser", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

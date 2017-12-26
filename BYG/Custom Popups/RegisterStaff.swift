@@ -16,7 +16,9 @@ class RegisterStaff: UIViewController {
     
     @IBOutlet weak var registrationView: UIView!
     
+    @IBOutlet weak var gradeLabel: UILabel!
     @IBOutlet weak var registrationLabel: UILabel!
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -39,13 +41,36 @@ class RegisterStaff: UIViewController {
                     
                     self.registrationReference = Database.database().reference()
                     
-                    let autoId = self.registrationReference.child("Mentor").childByAutoId()
+                    if (self.person == "Mentor"){
+                        let autoId = self.registrationReference.child("Mentor").childByAutoId()
+                        
+                        autoId.child("name").setValue(self.nameField.text!)
+                        autoId.child("grade").setValue(self.gradeField.text!)
+                        autoId.child("phone").setValue(self.phoneField.text!)
+                        autoId.child("email").setValue(self.emailField.text!)
+                    }
+                    else if (self.person == "Pastor"){
+                        let autoId = self.registrationReference.child("Staff").childByAutoId()
+                        
+                        autoId.child("name").setValue(self.nameField.text!)
+                        autoId.child("email").setValue(self.emailField.text!)
+                        autoId.child("phone").setValue(self.phoneField.text!)
+                    }
                     
-                    autoId.child("name").setValue(self.nameField.text!)
-                    autoId.child("grade").setValue(self.gradeField.text!)
-                    autoId.child("email").setValue(self.emailField.text!)
-                    autoId.child("phone").setValue(self.phoneField.text!)
+                    let user = Auth.auth().currentUser
+                    let changeRequest = user?.createProfileChangeRequest()
                     
+                    changeRequest?.displayName = self.nameField.text!
+                    changeRequest?.commitChanges(completion: {
+                        error in
+                        if let error = error {
+                            print (error)
+                        }
+                        else{
+                            print ("profile created.")
+                        }
+                    })
+                        
                     self.nameField.text = ""
                     self.emailField.text = ""
                     self.passwordField.text = ""
@@ -83,6 +108,11 @@ class RegisterStaff: UIViewController {
         registrationView.layer.masksToBounds = true
         
         registrationLabel.text = person! + " Registration"
+        
+        if (person == "Pastor"){
+            gradeLabel.alpha = 0
+            gradeLabel.alpha = 0
+        }
         // Do any additional setup after loading the view.
     }
 

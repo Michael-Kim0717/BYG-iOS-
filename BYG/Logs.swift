@@ -8,6 +8,8 @@
 
 import Foundation
 import MessageUI
+import FirebaseAuth
+import FirebaseDatabase
 
 class Logs : UIViewController, MFMailComposeViewControllerDelegate {
     
@@ -39,10 +41,26 @@ class Logs : UIViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var meeting: UITextView!
     @IBOutlet weak var prayerReq: UITextView!
     
+    var mentorReference: DatabaseReference!
+    var databaseHandle: DatabaseHandle!
+    
+    var grade: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        mentorReference = Database.database().reference()
+        
+        databaseHandle = mentorReference?.child("Mentor").observe(.childAdded, with: { (snapshot) in
+            // If there are items within the Announcements reference, grab it as a string and show it in the tableview.
+            if let item = snapshot.value as? [String:AnyObject]{
+                if (item["name"] as? String == Auth.auth().currentUser?.displayName){
+                    self.grade = item["grade"] as? String
+                }
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,7 +73,7 @@ class Logs : UIViewController, MFMailComposeViewControllerDelegate {
         mailComposerVC.mailComposeDelegate = self
         
         mailComposerVC.setToRecipients(["michaelkim6@yahoo.com"])
-        mailComposerVC.setSubject("Log for *GRADE*")
+        mailComposerVC.setSubject("Log for " + self.grade!)
         mailComposerVC.setMessageBody(
             "Missing Students : \n" +
             missingStudents.text! + "\n" +

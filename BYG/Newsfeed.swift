@@ -8,16 +8,25 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 
 class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // Variable declarations.
     @IBOutlet weak var announcementTable: UITableView!
+    @IBOutlet weak var welcomeText: UILabel!
     
     var announcementReference : DatabaseReference!
     var handle: DatabaseHandle!
     
+    @IBAction func logoutUser(_ sender: Any) {
+        if Auth.auth().currentUser != nil {
+            try! Auth.auth().signOut()
+        }
+    }
+    
     var announcementList: [String] = []
+    var isLoggedIn: String = "Student"
     
     // Set up table view.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,13 +44,31 @@ class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+        if Auth.auth().currentUser != nil {
+            self.isLoggedIn = "Staff"
+        }
+        
+        if self.isLoggedIn == "Staff" {
+            welcomeText.text = "Welcome " + (Auth.auth().currentUser?.displayName)!
+        }
+        else{
+            welcomeText.text = "Welcome!"
+        }
+        
         // Get the announcement reference and retrieve information.
         announcementReference = Database.database().reference()
         
         handle = announcementReference?.child("Announcements").observe(.childAdded, with: { (snapshot) in
             // If there are items within the Announcements reference, grab it as a string and show it in the tableview.
             if let item = snapshot.value as? [String:AnyObject]{
-                self.announcementList.append(item["announcement"] as! String)
+                if (self.isLoggedIn == "Staff"){
+                    self.announcementList.append(item["announcement"] as! String)
+                }
+                else{
+                    if (item["person"] as! String == "Student"){
+                        self.announcementList.append(item["announcement"] as! String)
+                    }
+                }
                 self.announcementTable.reloadData()
             }
         })

@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 
 class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,6 +22,8 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
     // Database Variables.
     var prReference : DatabaseReference!
     var handle : DatabaseHandle!
+    
+    var grade: String?
   
     // TableView Setup Functions.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,11 +67,25 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
         
         prReference = Database.database().reference()
         
+        handle = prReference?.child("Mentor").observe(.childAdded, with: { (snapshot) in
+            // If there are items within the Announcements reference, grab it as a string and show it in the tableview.
+            if let item = snapshot.value as? [String:AnyObject]{
+                if (item["name"] as? String == Auth.auth().currentUser?.displayName){
+                    self.grade = item["grade"] as? String
+                }
+            }
+        })
+        
         // Grab each prayer request from the database.
         // If the prayer request satisfies the current user's grade requirements, it will show up within the tableview.
         handle = prReference?.child("Prayer Requests").observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value as? [String:AnyObject] {
-                if ((item["grade"] as! String) == "10B" || (item["grade"] as! String) == "A"){
+                let currGrade = item["grade"] as! String
+                let endIndex = currGrade.index(currGrade.endIndex, offsetBy: -1)
+                let currGradeSS = currGrade.prefix(upTo: endIndex)
+                print(currGradeSS)
+                if ((currGrade) == self.grade! || (currGrade) == "A" || currGradeSS == self.grade!){
+                    print("true")
                     self.studentNameList.append(item["name"] as! String)
                     self.prayerRequestDateList.append(item["date"] as! String)
                     self.prayerRequestList.append(item["prayerRequest"] as! String)

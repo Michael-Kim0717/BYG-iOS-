@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 
 class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -20,6 +21,7 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
     var studentBirthdayList: [String] = []
     
     var index: Int?
+    var grade: String?
     
     // Database Variables.
     var directoryReference : DatabaseReference!
@@ -35,7 +37,7 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         // Set the labels accordingly to the information gathered from the database.
         cell.studentName?.text = studentNameList[indexPath.row]
-        cell.studentGrade?.text = "10B"
+        cell.studentGrade?.text = self.grade
         cell.studentAddress?.text = studentAddressList[indexPath.row]
         cell.studentPhoneNumber?.text = studentPhoneList[indexPath.row]
         cell.studentBirthday?.text = studentBirthdayList[indexPath.row]
@@ -65,7 +67,7 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
             index = indexPath?.row
             
             directoryReference.child("Students").child(studentNameList[index!]).removeValue {
-                error, _ in print(error)
+                error, _ in print(error!)
             }
             
             studentNameList.remove(at: index!)
@@ -102,12 +104,21 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         directoryReference = Database.database().reference()
         
+        handle = directoryReference?.child("Mentor").observe(.childAdded, with: { (snapshot) in
+            // If there are items within the Announcements reference, grab it as a string and show it in the tableview.
+            if let item = snapshot.value as? [String:AnyObject]{
+                if (item["name"] as? String == Auth.auth().currentUser?.displayName){
+                    self.grade = item["grade"] as? String
+                }
+            }
+        })
+        
         // Grabs each student from the directory reference.
         // If the grade is currently "10B", it will populate the corresponding arrays.
         handle = directoryReference?.child("Students").observe(.childAdded, with: { (snapshot) in
             if let item = snapshot.value as? [String:AnyObject]{
-                if ((item["grade"] as? String) == "10B"){
-                    self.studentNameList.append(snapshot.key)
+                if ((item["grade"] as? String) == self.grade){
+                    self.studentNameList.append(item["name"] as! String)
                     self.studentAddressList.append((item["address"] as! String) + ", " + (item["city"] as! String) + ", " + (item["state"] as! String))
                     self.studentPhoneList.append(item["phone"] as! String)
                     self.studentBirthdayList.append(item["birthday"] as! String)
