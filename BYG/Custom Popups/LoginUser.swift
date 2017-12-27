@@ -15,6 +15,8 @@ class LoginUser: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var loginView: UIView!
+    
     @IBAction func login(_ sender: Any) {
         Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!, completion: {
             (user, error) in
@@ -32,9 +34,15 @@ class LoginUser: UIViewController {
         })
     }
     
+    @IBAction func dismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loginView.layer.cornerRadius = 10
+        loginView.layer.masksToBounds = true
         // Do any additional setup after loading the view.
     }
 

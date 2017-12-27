@@ -37,12 +37,12 @@ class RegisterLogin : UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "registerMentor") {
-            let destVC = segue.destination as! RegisterStaff
+            let destVC = segue.destination as! EnterPIN
             
             destVC.person = "Mentor"
         }
         else if (segue.identifier == "registerStaff"){
-            let destVC = segue.destination as! RegisterStaff
+            let destVC = segue.destination as! EnterPIN
             
             destVC.person = "Pastor"
         }

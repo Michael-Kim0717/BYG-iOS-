@@ -111,7 +111,8 @@ class RegisterStaff: UIViewController {
         
         if (person == "Pastor"){
             gradeLabel.alpha = 0
-            gradeLabel.alpha = 0
+            
+            gradeField.alpha = 0
         }
         // Do any additional setup after loading the view.
     }
