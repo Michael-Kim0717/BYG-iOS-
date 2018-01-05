@@ -9,10 +9,11 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class RegisterStaff: UIViewController {
+class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     // Variable Declarations.
     var person: String?
+    let grades = ["6B", "6G", "7B", "7G", "8B", "8G", "9B", "9G", "10B", "10G", "11B", "11G", "12B", "12G"]
     
     @IBOutlet weak var registrationView: UIView!
     
@@ -24,6 +25,25 @@ class RegisterStaff: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var gradeField: UITextField!
+    
+    var gradePicker = UIPickerView()
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return grades.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return grades[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        gradeField.text = grades[row]
+        gradeField.resignFirstResponder()
+    }
     
     var registrationReference: DatabaseReference!
     
@@ -111,8 +131,12 @@ class RegisterStaff: UIViewController {
         
         if (person == "Pastor"){
             gradeLabel.alpha = 0
-            
             gradeField.alpha = 0
+        }
+        else {
+            gradeField.inputView = gradePicker
+            gradePicker.delegate = self
+            gradePicker.dataSource = self
         }
         // Do any additional setup after loading the view.
     }

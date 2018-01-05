@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
-class ResponseCard : UIViewController {
+class ResponseCard : UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     // Variable Declarations.
     @IBOutlet weak var mentorSwitchOutlet: UISwitch!
@@ -28,7 +28,28 @@ class ResponseCard : UIViewController {
     @IBOutlet weak var gradeField: UITextField!
     @IBOutlet weak var prayerReqField: UITextView!
     
+    let grades = ["6B", "6G", "7B", "7G", "8B", "8G", "9B", "9G", "10B", "10G", "11B", "11G", "12B", "12G"]
+    
+    var gradePicker = UIPickerView()
+    
     var prReference: DatabaseReference!
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return grades.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return grades[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        gradeField.text = grades[row]
+        gradeField.resignFirstResponder()
+    }
     
     // When certain switches are toggled on, hide any unnecessary switches and labels.
     @IBAction func allStaffSwitch(_ sender: UISwitch) {
@@ -180,6 +201,11 @@ class ResponseCard : UIViewController {
         super.viewDidLoad()
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        gradePicker.delegate = self
+        gradePicker.dataSource = self
+        
+        gradeField.inputView = gradePicker
     }
     
     override func didReceiveMemoryWarning() {
