@@ -46,6 +46,7 @@ class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if Auth.auth().currentUser != nil {
             self.isLoggedIn = "Staff"
+            self.performSegue(withIdentifier: "loggedInVC", sender: self)
         }
         
         if self.isLoggedIn == "Staff" {

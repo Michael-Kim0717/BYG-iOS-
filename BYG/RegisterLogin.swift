@@ -17,21 +17,12 @@ class RegisterLogin : UIViewController {
     @IBOutlet weak var loginOutlet: UIButton!
     
     @IBAction func mentorButton(_ sender: Any) {
-        mentorOutlet.backgroundColor = UIColor.black
-        mentorOutlet.setTitleColor(UIColor.white, for: UIControlState.normal)
-        
         performSegue(withIdentifier: "registerMentor", sender: self)
     }
     @IBAction func staffButton(_ sender: Any) {
-        staffOutlet.backgroundColor = UIColor.white
-        staffOutlet.setTitleColor(UIColor.black, for: UIControlState.normal)
-        
         performSegue(withIdentifier: "registerStaff", sender: self)
     }
     @IBAction func loginButton(_ sender: Any) {
-        loginOutlet.backgroundColor = UIColor.black
-        loginOutlet.setTitleColor(UIColor.white, for: UIControlState.normal)
-        
         performSegue(withIdentifier: "loginUser", sender: self)
     }
     
@@ -46,6 +37,25 @@ class RegisterLogin : UIViewController {
             
             destVC.person = "Pastor"
         }
+        
+        mentorOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchDown)
+        mentorOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchUpInside)
+        
+        staffOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchDown)
+        staffOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchUpInside)
+        
+        loginOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchDown)
+        loginOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchUpInside)
+    }
+    
+    @objc func WhiteToBlack (_ button: UIButton) {
+        button.backgroundColor = UIColor.black
+        button.setTitleColor(UIColor.white, for: UIControlState.normal)
+    }
+    
+    @objc func BlackToWhite (_ button: UIButton) {
+        button.backgroundColor = UIColor.white
+        button.setTitleColor(UIColor.black, for: UIControlState.normal)
     }
     
     override func viewDidLoad() {
