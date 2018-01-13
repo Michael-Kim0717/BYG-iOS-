@@ -11,7 +11,6 @@ import Foundation
 class RegisterLogin : UIViewController {
     
     // Variable Declarations.
-    
     @IBOutlet weak var mentorOutlet: UIButton!
     @IBOutlet weak var staffOutlet: UIButton!
     @IBOutlet weak var loginOutlet: UIButton!
@@ -26,6 +25,10 @@ class RegisterLogin : UIViewController {
         performSegue(withIdentifier: "loginUser", sender: self)
     }
     
+    /*
+     Depending on which registration was clicked,
+     send the proper details over upon segue.
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "registerMentor") {
             let destVC = segue.destination as! EnterPIN
@@ -37,17 +40,9 @@ class RegisterLogin : UIViewController {
             
             destVC.person = "Pastor"
         }
-        
-        mentorOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchDown)
-        mentorOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchUpInside)
-        
-        staffOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchDown)
-        staffOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchUpInside)
-        
-        loginOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchDown)
-        loginOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchUpInside)
     }
     
+    // Functions to change the button's color and text upon press/release.
     @objc func WhiteToBlack (_ button: UIButton) {
         button.backgroundColor = UIColor.black
         button.setTitleColor(UIColor.white, for: UIControlState.normal)
@@ -61,6 +56,17 @@ class RegisterLogin : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addGestureRecognizer(revealViewController().panGestureRecognizer())
+        
+        // When the selected button is pressed, change the colors of the background and text.
+        // When the selected button is released, change the colors back.
+        mentorOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchDown)
+        mentorOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchUpInside)
+        
+        staffOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchDown)
+        staffOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchUpInside)
+        
+        loginOutlet.addTarget(self, action: #selector(WhiteToBlack(_:)), for: .touchDown)
+        loginOutlet.addTarget(self, action: #selector(BlackToWhite(_:)), for: .touchUpInside)
     }
     
     override func didReceiveMemoryWarning() {

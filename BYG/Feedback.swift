@@ -11,10 +11,12 @@ import FirebaseDatabase
 
 class Feedback : UIViewController {
     
-    // Variable declarations.
+    // Variable Declarations.
+    @IBOutlet weak var feedbackField: UITextView!
+    
+    // Database Declarations.
     var feedbackReference : DatabaseReference!
     
-    @IBOutlet weak var feedbackField: UITextView!
     @IBAction func submitFeedbackButton(_ sender: Any) {
         // When the 'Submit' button is clicked, get the 'Feedback' reference.
         feedbackReference = Database.database().reference()

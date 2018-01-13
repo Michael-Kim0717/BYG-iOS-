@@ -17,21 +17,24 @@ class ShowPrayerRequest: UIViewController {
     var pr: String?
     
     @IBOutlet weak var prView: UIView!
-    @IBAction func dismissPopup(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
     @IBOutlet weak var studentLabel: UILabel!
     @IBOutlet weak var gradeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var prLabel: UILabel!
     
+    // Dismiss the Prayer Request popup.
+    @IBAction func dismissPopup(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Provide rounded corners to the popup.
         prView.layer.cornerRadius = 10
         prView.layer.masksToBounds = true
-        // Do any additional setup after loading the view.
         
+        // Populate variables with the selected prayer request's details.
         studentLabel.text = name
         gradeLabel.text = grade
         dateLabel.text = date
@@ -40,18 +43,6 @@ class ShowPrayerRequest: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -27,10 +27,19 @@ class AddEditStudent: UIViewController {
     @IBOutlet weak var studentState: UITextField!
     
     @IBOutlet weak var addEditButton: UIButton!
+    @IBOutlet weak var popupView: UIView!
     
+    // Database Declarations.
     var studentReference: DatabaseReference!
     
+    /*
+     If the Add/Edit Student button is pressed,
+     check if AT LEAST the name is filled in
+     and provide an error if it is.
+     Otherwise, add all details and the student into the database.
+     */
     @IBAction func addEditStudent(_ sender: UIButton) {
+        // Check if at least the name is filled in and provide an error if not.
         if (studentName.text == ""){
             let emptyFieldError = UIAlertController(title: "Empty Fields",
                                                        message: "Please fill out your student's information.",
@@ -39,6 +48,7 @@ class AddEditStudent: UIViewController {
             emptyFieldError.addAction(dismiss)
             self.present(emptyFieldError, animated: true, completion: nil)
         }
+        // Put all the details into the students directory and provide an alert when properly saved.
         else{
             studentReference = Database.database().reference()
             
@@ -65,17 +75,20 @@ class AddEditStudent: UIViewController {
             self.present(successfulChange, animated: true, completion: nil)
         }
     }
+    
+    // Close the Add/Edit Student popup.
     @IBAction func closePopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    @IBOutlet weak var popupView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Provide rounded corners to the popup.
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         
+        // Get corresponding information if the Edit student button was previously clicked.
         studentName.text = name
         studentBirthday.text = birthday
         studentPhoneNumber.text = phoneNum
@@ -86,18 +99,6 @@ class AddEditStudent: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

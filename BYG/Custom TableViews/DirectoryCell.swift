@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Provide a class for the Directory screen's custom table view cells.
 class DirectoryCell: UITableViewCell {
 
     @IBOutlet weak var studentName: UILabel!
@@ -21,13 +22,10 @@ class DirectoryCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

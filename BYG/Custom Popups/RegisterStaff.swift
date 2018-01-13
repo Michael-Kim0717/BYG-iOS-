@@ -28,6 +28,7 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     
     var gradePicker = UIPickerView()
     
+    // PickerView Functions.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -45,13 +46,24 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         gradeField.resignFirstResponder()
     }
     
+    // Database Declarations.
     var registrationReference: DatabaseReference!
     
+    /*
+     If the register person button is pressed,
+     check if any fields are empty
+     and provide an error if any fields are empty.
+     If all fields are populated,
+     provide an error if there are any complications
+     or store the user into the database.
+     */
     @IBAction func registerPerson(_ sender: Any) {
+        // Check if any registration fields are empty.
         if (nameField.text != "" || emailField.text != "" || passwordField.text != "" || phoneField.text != "" || gradeField.text != ""){
             Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!, completion: {
                 (user, error) in
                 if (user != nil){
+                    // Provide an alert to show that the user was successfully created.
                     let userCreated = UIAlertController(title: "User Successfully Created!",
                                                    message: "You are now set to log in.",
                                                    preferredStyle: .alert)
@@ -61,6 +73,7 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
                     
                     self.registrationReference = Database.database().reference()
                     
+                    // Save the user into the corresponding database.
                     if (self.person == "Mentor"){
                         let autoId = self.registrationReference.child("Mentor").childByAutoId()
                         
@@ -77,6 +90,7 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
                         autoId.child("phone").setValue(self.phoneField.text!)
                     }
                     
+                    // Save the user's display name as the entered name field.
                     let user = Auth.auth().currentUser
                     let changeRequest = user?.createProfileChangeRequest()
                     
@@ -97,6 +111,7 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
                     self.phoneField.text = ""
                     self.gradeField.text = ""
                 }
+                // Provide an error if there is any complications in signing up.
                 else{
                     let creationError = UIAlertController(title: "Error During Signup",
                                                    message: error?.localizedDescription,
@@ -107,6 +122,7 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
                 }
             })
         }
+        // Provide an error if there are empty fields.
         else {
             let emptyField = UIAlertController(title: "Empty Fields",
                                                   message: "Please fill in all the fields.",
@@ -117,6 +133,7 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         }
     }
     
+    // Dismiss the RegisterStaff popup.
     @IBAction func dismissPopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -124,9 +141,11 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Provide rounded corners to the view.
         registrationView.layer.cornerRadius = 10
         registrationView.layer.masksToBounds = true
         
+        // Change up the popup corresponding to its registration.
         registrationLabel.text = person! + " Registration"
         
         if (person == "Pastor"){
@@ -138,22 +157,10 @@ class RegisterStaff: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
             gradePicker.delegate = self
             gradePicker.dataSource = self
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -12,23 +12,25 @@ import FirebaseAuth
 
 class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // Variable declarations.
+    // Variable Declarations.
     @IBOutlet weak var announcementTable: UITableView!
     @IBOutlet weak var welcomeText: UILabel!
     
+    var announcementList: [String] = []
+    var isLoggedIn: String = "Student"
+    
+    // Database Declarations.
     var announcementReference : DatabaseReference!
     var handle: DatabaseHandle!
     
+    // Logout the user when pressed.
     @IBAction func logoutUser(_ sender: Any) {
         if Auth.auth().currentUser != nil {
             try! Auth.auth().signOut()
         }
     }
     
-    var announcementList: [String] = []
-    var isLoggedIn: String = "Student"
-    
-    // Set up table view.
+    // TableView Functions.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return announcementList.count
     }
@@ -44,9 +46,9 @@ class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+        // Change the values corresponding to if a user is logged in or not.
         if Auth.auth().currentUser != nil {
             self.isLoggedIn = "Staff"
-            self.performSegue(withIdentifier: "loggedInVC", sender: self)
         }
         
         if self.isLoggedIn == "Staff" {

@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ This class is used primarily when a user is logged in.
+ The navigation menu on the left side of the screen will provide 6 options: Newsfeed, Mentor's Notes, Logs, Directory, Prayer Requests, Feedback.
+ */
 class StaffTableVC: UITableViewController {
     
     var TableArray = [String]()

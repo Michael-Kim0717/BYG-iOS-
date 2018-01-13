@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3381D58237A2ADABCBA6DF82 /* Pods_BYG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3441E1BB2E98C4023C447ED /* Pods_BYG.framework */; };
 		95066BFC1FE1E197004575FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95066BFB1FE1E197004575FC /* AppDelegate.swift */; };
-		95066BFE1FE1E197004575FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95066BFD1FE1E197004575FC /* ViewController.swift */; };
 		95066C011FE1E197004575FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95066BFF1FE1E197004575FC /* Main.storyboard */; };
 		95066C031FE1E197004575FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95066C021FE1E197004575FC /* Assets.xcassets */; };
 		95066C061FE1E197004575FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95066C041FE1E197004575FC /* LaunchScreen.storyboard */; };
@@ -31,6 +30,7 @@
 		9589B8B11FEDCE6700735F3E /* ShowPrayerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9589B8B01FEDCE6700735F3E /* ShowPrayerRequest.swift */; };
 		95C3BFCC1FE4A68800973EAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95C3BFCB1FE4A68700973EAB /* GoogleService-Info.plist */; };
 		95D518F81FE9972E0067E456 /* DirectoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D518F71FE9972E0067E456 /* DirectoryCell.swift */; };
+		95D6A185200AA66C0056ED6C /* LogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D6A184200AA66C0056ED6C /* LogCell.swift */; };
 		95F1384E1FF073DF00FB294D /* LoginUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F1384D1FF073DF00FB294D /* LoginUser.swift */; };
 		95F138501FF073E800FB294D /* RegisterStaff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F1384F1FF073E800FB294D /* RegisterStaff.swift */; };
 /* End PBXBuildFile section */
@@ -40,7 +40,6 @@
 		15F9A4A70588B17E1BDA4CF1 /* Pods-BYG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BYG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BYG/Pods-BYG.debug.xcconfig"; sourceTree = "<group>"; };
 		95066BF81FE1E197004575FC /* BYG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BYG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95066BFB1FE1E197004575FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		95066BFD1FE1E197004575FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		95066C001FE1E197004575FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95066C021FE1E197004575FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95066C051FE1E197004575FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		9589B8B01FEDCE6700735F3E /* ShowPrayerRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPrayerRequest.swift; sourceTree = "<group>"; };
 		95C3BFCB1FE4A68700973EAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		95D518F71FE9972E0067E456 /* DirectoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryCell.swift; sourceTree = "<group>"; };
+		95D6A184200AA66C0056ED6C /* LogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCell.swift; sourceTree = "<group>"; };
 		95F1384D1FF073DF00FB294D /* LoginUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUser.swift; sourceTree = "<group>"; };
 		95F1384F1FF073E800FB294D /* RegisterStaff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterStaff.swift; path = "/Users/michaelkim/Desktop/BYG/BYG/Custom Popups/RegisterStaff.swift"; sourceTree = "<absolute>"; };
 		E3441E1BB2E98C4023C447ED /* Pods_BYG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BYG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,7 +122,6 @@
 				95066C071FE1E197004575FC /* Info.plist */,
 				956BFC7C1FE1E44C009DBCE9 /* BackTableVC.swift */,
 				954761B31FE30AA300C1667D /* StaffTableVC.swift */,
-				95066BFD1FE1E197004575FC /* ViewController.swift */,
 				95066C021FE1E197004575FC /* Assets.xcassets */,
 				952072971FEC5408008BB517 /* Custom Popups */,
 				95D518F61FE996D80067E456 /* Custom TableViews */,
@@ -162,6 +161,7 @@
 		95D518F61FE996D80067E456 /* Custom TableViews */ = {
 			isa = PBXGroup;
 			children = (
+				95D6A184200AA66C0056ED6C /* LogCell.swift */,
 				95D518F71FE9972E0067E456 /* DirectoryCell.swift */,
 				95505AEA1FE9C74C00991962 /* PrayerRequestCell.swift */,
 			);
@@ -319,12 +319,12 @@
 				954761BE1FE30FEA00C1667D /* Feedback.swift in Sources */,
 				954761B41FE30AA300C1667D /* StaffTableVC.swift in Sources */,
 				951B0EE11FE85F19002FEE40 /* Announcement.swift in Sources */,
-				95066BFE1FE1E197004575FC /* ViewController.swift in Sources */,
 				95F1384E1FF073DF00FB294D /* LoginUser.swift in Sources */,
 				956BFC7F1FE1F129009DBCE9 /* Newsfeed.swift in Sources */,
 				95066BFC1FE1E197004575FC /* AppDelegate.swift in Sources */,
 				954761BC1FE30FB800C1667D /* PrayerRequests.swift in Sources */,
 				954761B81FE30F2400C1667D /* Logs.swift in Sources */,
+				95D6A185200AA66C0056ED6C /* LogCell.swift in Sources */,
 				952072991FEC5438008BB517 /* AddEditStudent.swift in Sources */,
 				9589B8B11FEDCE6700735F3E /* ShowPrayerRequest.swift in Sources */,
 				956BFC7D1FE1E44C009DBCE9 /* BackTableVC.swift in Sources */,

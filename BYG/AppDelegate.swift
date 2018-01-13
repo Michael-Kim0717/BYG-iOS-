@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
+        
+        // If a user is logged in, move them immediately into the Staff View Controller.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if Auth.auth().currentUser != nil {
+            let staffVC = storyboard.instantiateViewController(withIdentifier: "StaffVC")
+            
+            self.window?.rootViewController = staffVC
+            self.window?.makeKeyAndVisible()
+        }
         
         return true
     }

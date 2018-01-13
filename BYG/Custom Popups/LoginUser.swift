@@ -17,12 +17,19 @@ class LoginUser: UIViewController {
     
     @IBOutlet weak var loginView: UIView!
     
+    /*
+     When the login button is clicked,
+     if the password is incorrect send an error.
+     Otherwise send the user into the StaffVC view controller.
+     */
     @IBAction func login(_ sender: Any) {
         Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!, completion: {
             (user, error) in
+            // If there is no error in logging in.
             if (user != nil) {
                 self.performSegue(withIdentifier: "toStaff", sender: self)
             }
+            // Throw an alert when there is an error.
             else{
                 let creationError = UIAlertController(title: "Error During Signup",
                                                       message: error?.localizedDescription,
@@ -34,6 +41,7 @@ class LoginUser: UIViewController {
         })
     }
     
+    // Close the Login popup.
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -41,25 +49,13 @@ class LoginUser: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Provide rounded corners to the popup.
         loginView.layer.cornerRadius = 10
         loginView.layer.masksToBounds = true
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Provide a class for the Prayer Request screen's custom table view cells.
 class PrayerRequestCell: UITableViewCell {
     
     @IBOutlet weak var studentName: UILabel!
@@ -16,13 +17,10 @@ class PrayerRequestCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

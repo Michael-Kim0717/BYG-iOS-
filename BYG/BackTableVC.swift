@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ This class is used primarily when no users are logged in.
+ The navigation menu on the left side of the screen will only provide 3 options: Newsfeed, Response Card, Register/Login.
+ */
 class BackTableVC : UITableViewController {
     
     var TableArray = [String]()
@@ -21,7 +25,7 @@ class BackTableVC : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: TableArray[indexPath.row], for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableArray[indexPath.row], for: indexPath) as UITableViewCell
         
         cell.textLabel?.text = TableArray[indexPath.row]
         

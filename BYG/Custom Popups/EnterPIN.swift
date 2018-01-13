@@ -10,10 +10,18 @@ import UIKit
 
 class EnterPIN: UIViewController {
     
+    // Variable Declarations.
+    
+    var person: String?
+    var pin: String?
     @IBOutlet weak var PINView: UIView!
- 
     @IBOutlet weak var pinText: UITextField!
     
+    /*
+     When the user is ready to enter the correct pin number,
+     if the pin number entered is the same as the corresponding pin number, move the user into the registration screen.
+     Otherwise, provide an alert that the pin is incorrect.
+     */
     @IBAction func enterPIN(_ sender: Any) {
         var pinString: String
         pinString = pinText.text!
@@ -30,13 +38,13 @@ class EnterPIN: UIViewController {
             self.present(wrongPIN, animated: true, completion: nil)
         }
     }
+    
+    // Close the EnterPIN popup.
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    var person: String?
-    var pin: String?
-    
+    // Send the corresponding staff tag into the RegisterStaff screen.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as! RegisterStaff
         
@@ -46,33 +54,21 @@ class EnterPIN: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Provide rounded corners to the EnterPIN layout.
         PINView.layer.cornerRadius = 10
         PINView.layer.masksToBounds = true
         
+        // Provide the corresponding PIN numbers.
         if person == "Mentor" {
             pin = "12345678"
         }
         else {
             pin = "87654321"
         }
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

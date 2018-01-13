@@ -23,11 +23,11 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
     var index: Int?
     var grade: String?
     
-    // Database Variables.
+    // Database Declarations.
     var directoryReference : DatabaseReference!
     var handle : DatabaseHandle!
     
-    // TableView Setup Functions.
+    // TableView Functions.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return studentNameList.count
     }
@@ -50,6 +50,10 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
         return 100;
     }
     
+    /*
+     When the Edit button is pressed,
+     provide the details to the Edit Student screen.
+     */
     @IBAction func editButton(_ sender: UIButton) {
         if let cell = sender.superview?.superview as? DirectoryCell {
             let indexPath = studentTableView.indexPath(for: cell)
@@ -60,6 +64,10 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    /*
+     When the Delete button is pressed,
+     delete the entry from both the database and the tableview.
+     */
     @IBAction func deleteButton(_ sender: UIButton) {
         if let cell = sender.superview?.superview as? DirectoryCell {
             let indexPath = studentTableView.indexPath(for: cell)
@@ -86,6 +94,8 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    // When moving to the Edit Student screen,
+    // send the student's details over.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "editStudent"){
             let destVC = segue.destination as! AddEditStudent

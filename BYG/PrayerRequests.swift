@@ -19,13 +19,13 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
     var prayerRequestDateList: [String] = []
     var prayerRequestList: [String] = []
     
-    // Database Variables.
+    var grade: String?
+    
+    // Database Declarations.
     var prReference : DatabaseReference!
     var handle : DatabaseHandle!
     
-    var grade: String?
-  
-    // TableView Setup Functions.
+    // TableView Functions.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return studentNameList.count
     }
@@ -43,7 +43,7 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Make each cell around 85 px each.
-        return 85;
+        return 100;
     }
     
     // Pass data to the 'Show Prayer Request' VC

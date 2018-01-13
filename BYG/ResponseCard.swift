@@ -34,6 +34,7 @@ class ResponseCard : UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
     
     var prReference: DatabaseReference!
     
+    // PickerView Functions.
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -98,6 +99,11 @@ class ResponseCard : UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         }
     }
     
+    /*
+     When the Upload button is pressed,
+     check if certain fields are empty and if so, provide an error.
+     Otherwise, save the prayer request into the database depending on which switches were selected.
+     */
     @IBAction func uploadButton(_ sender: Any) {
         var name: String
         var grade: String
@@ -105,6 +111,7 @@ class ResponseCard : UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         
         prReference = Database.database().reference()
         
+        // If any fields are empty, throw an alert.
         if (!anonSwitchOutlet.isOn && (nameField.text == "" || gradeField.text == "" || prayerReqField.text == "")){
             let emptyFieldError = UIAlertController(title: "Empty Field(s)",
                                                        message: "Please fill in your name, grade, and prayer request or click anonymous to send anonymously.",
@@ -121,6 +128,8 @@ class ResponseCard : UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             emptyFieldError.addAction(dismiss)
             self.present(emptyFieldError, animated: true, completion: nil)
         }
+        // Create a new database entry for prayer requests and save their corresponding details.
+        // Send an alert once the entry is saved.
         else if (mentorSwitchOutlet.isOn || pastorSwitchOutlet.isOn || staffSwitchOutlet.isOn){
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy h:mm:ss a"
@@ -187,6 +196,7 @@ class ResponseCard : UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
             prSent.addAction(dismiss)
             self.present(prSent, animated: true, completion: nil)
         }
+        // If no staff are selected, provide an alert for the user to properly select a staff member.
         else{
             let unknownSender = UIAlertController(title: "Who are you sending this too?",
                                                        message: "Please select who you want to send this prayer request to.",
