@@ -15,7 +15,7 @@ class Feedback : UIViewController {
     @IBOutlet weak var feedbackField: UITextView!
     
     // Database Declarations.
-    var feedbackReference : DatabaseReference!
+    	var feedbackReference : DatabaseReference!
     
     @IBAction func submitFeedbackButton(_ sender: Any) {
         // When the 'Submit' button is clicked, get the 'Feedback' reference.

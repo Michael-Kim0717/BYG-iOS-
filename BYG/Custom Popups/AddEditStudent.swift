@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class AddEditStudent: UIViewController {
 
@@ -18,6 +19,8 @@ class AddEditStudent: UIViewController {
     var address : String?
     var city : String?
     var state : String?
+    
+    var grade: String?
     
     @IBOutlet weak var studentName: UITextField!
     @IBOutlet weak var studentBirthday: UITextField!
@@ -31,6 +34,8 @@ class AddEditStudent: UIViewController {
     
     // Database Declarations.
     var studentReference: DatabaseReference!
+    var directoryReference : DatabaseReference!
+    var handle : DatabaseHandle!
     
     /*
      If the Add/Edit Student button is pressed,
@@ -52,13 +57,13 @@ class AddEditStudent: UIViewController {
         else{
             studentReference = Database.database().reference()
             
-            studentReference.child("Students/" + studentName.text! + " 10B/name").setValue(studentName.text!)
-            studentReference.child("Students/" + studentName.text! + " 10B/grade").setValue("10B")
-            studentReference.child("Students/" + studentName.text! + " 10B/birthday").setValue(studentBirthday.text!)
-            studentReference.child("Students/" + studentName.text! + " 10B/phone").setValue(studentPhoneNumber.text!)
-            studentReference.child("Students/" + studentName.text! + " 10B/address").setValue(studentAddress.text!)
-            studentReference.child("Students/" + studentName.text! + " 10B/city").setValue(studentCity.text!)
-            studentReference.child("Students/" + studentName.text! + " 10B/state").setValue(studentState.text!)
+            studentReference.child("Students/" + studentName.text! + grade! + "/name").setValue(studentName.text!)
+            studentReference.child("Students/" + studentName.text! + grade! + "/grade").setValue(self.grade)
+            studentReference.child("Students/" + studentName.text! + grade! + "/birthday").setValue(studentBirthday.text!)
+            studentReference.child("Students/" + studentName.text! + grade! + "/phone").setValue(studentPhoneNumber.text!)
+            studentReference.child("Students/" + studentName.text! + grade! + "/address").setValue(studentAddress.text!)
+            studentReference.child("Students/" + studentName.text! + grade! + "/city").setValue(studentCity.text!)
+            studentReference.child("Students/" + studentName.text! + grade! + "/state").setValue(studentState.text!)
             
             studentName.text = ""
             studentBirthday.text = ""
@@ -95,6 +100,17 @@ class AddEditStudent: UIViewController {
         studentAddress.text = address
         studentCity.text = city
         studentState.text = state
+        
+        directoryReference = Database.database().reference()
+        
+        handle = directoryReference?.child("Mentor").observe(.childAdded, with: { (snapshot) in
+            // If there are items within the Announcements reference, grab it as a string and show it in the tableview.
+            if let item = snapshot.value as? [String:AnyObject]{
+                if (item["name"] as? String == Auth.auth().currentUser?.displayName){
+                    self.grade = item["grade"] as? String
+                }
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

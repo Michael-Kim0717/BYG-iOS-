@@ -16,6 +16,7 @@ class Logs : UIViewController, MFMailComposeViewControllerDelegate, UITableViewD
     // Variable Declarations.
     let logQuestions = ["Missing Students : ", "Highlights : ", "Did you meet the small group goal of the day? Why or why not? : ", "Solutions on how to improve small group time : ", "Who did you meet up with this week? : ", "Prayer Requests : "]
 
+    @IBOutlet weak var submitOutlet: UIButton!
     @IBOutlet weak var logTableView: UITableView!
     var missingStudents: UITextView!
     var highlights: UITextView!
@@ -23,6 +24,9 @@ class Logs : UIViewController, MFMailComposeViewControllerDelegate, UITableViewD
     var solutions: UITextView!
     var meetup: UITextView!
     var pr: UITextView!
+    
+    @IBOutlet weak var pastoralStaffLabel: UILabel!
+    @IBOutlet weak var construction: UIImageView!
     
     var grade: String?
     
@@ -109,6 +113,13 @@ class Logs : UIViewController, MFMailComposeViewControllerDelegate, UITableViewD
                 }
             }
         })
+        
+        if (self.grade == nil) {
+            self.construction.alpha = 1
+            self.pastoralStaffLabel.alpha = 1
+            self.logTableView.alpha = 0
+            self.submitOutlet.alpha = 0
+        }
     }
     
     override func didReceiveMemoryWarning() {

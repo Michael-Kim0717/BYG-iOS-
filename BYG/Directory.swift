@@ -120,6 +120,9 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
                 if (item["name"] as? String == Auth.auth().currentUser?.displayName){
                     self.grade = item["grade"] as? String
                 }
+                if (self.grade == nil){
+                    self.grade = "A"
+                }
             }
         })
         
@@ -132,6 +135,20 @@ class Directory : UIViewController, UITableViewDataSource, UITableViewDelegate {
                     self.studentAddressList.append((item["address"] as! String) + ", " + (item["city"] as! String) + ", " + (item["state"] as! String))
                     self.studentPhoneList.append(item["phone"] as! String)
                     self.studentBirthdayList.append(item["birthday"] as! String)
+                    self.studentTableView.reloadData()
+                }
+                else if (self.grade == "A" && (item["grade"] as? String == "10B" || item["grade"] as? String == "10G" || item["grade"] as? String == "11B" || item["grade"] as? String == "11G" || item["grade"] as? String == "12B" || item["grade"] as? String == "12G")){
+                    self.studentNameList.append(item["name"] as! String)
+                    self.studentAddressList.append((item["address"] as! String) + ", " + (item["city"] as! String) + ", " + (item["state"] as! String))
+                    self.studentPhoneList.append(item["phone"] as! String)
+                    self.studentBirthdayList.append(item["birthday"] as! String)
+                    self.studentTableView.reloadData()
+                }
+                else {
+                    self.studentNameList.insert(item["name"] as! String, at: 0)
+                    self.studentAddressList.insert((item["address"] as! String) + ", " + (item["city"] as! String) + ", " + (item["state"] as! String), at: 0)
+                    self.studentPhoneList.insert(item["phone"] as! String, at: 0)
+                    self.studentBirthdayList.insert(item["birthday"] as! String, at: 0)
                     self.studentTableView.reloadData()
                 }
             }

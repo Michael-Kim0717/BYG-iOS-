@@ -18,8 +18,9 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
     var studentNameList: [String] = []
     var prayerRequestDateList: [String] = []
     var prayerRequestList: [String] = []
+    var prayerRequestGradeList: [String] = []
     
-    var grade: String?
+    var grade: String? = "A"
     
     // Database Declarations.
     var prReference : DatabaseReference!
@@ -42,7 +43,7 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Make each cell around 85 px each.
+        // Make each cell around 100 px each.
         return 100;
     }
     
@@ -54,7 +55,7 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? ShowPrayerRequest {
             destination.name = studentNameList[(prTableView.indexPathForSelectedRow?.row)!]
-            destination.grade = "10B"
+            destination.grade = prayerRequestGradeList[(prTableView.indexPathForSelectedRow?.row)!]
             destination.date = prayerRequestDateList[(prTableView.indexPathForSelectedRow?.row)!]
             destination.pr = prayerRequestList[(prTableView.indexPathForSelectedRow?.row)!]
         }
@@ -72,6 +73,9 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
             if let item = snapshot.value as? [String:AnyObject]{
                 if (item["name"] as? String == Auth.auth().currentUser?.displayName){
                     self.grade = item["grade"] as? String
+                    if self.grade == nil {
+                        self.grade = "A"
+                    }
                 }
             }
         })
@@ -83,13 +87,24 @@ class PrayerRequests : UIViewController, UITableViewDelegate, UITableViewDataSou
                 let currGrade = item["grade"] as! String
                 let endIndex = currGrade.index(currGrade.endIndex, offsetBy: -1)
                 let currGradeSS = currGrade.prefix(upTo: endIndex)
-                print(currGradeSS)
-                if ((currGrade) == self.grade! || (currGrade) == "A" || currGradeSS == self.grade!){
+                let lastLetter = currGrade[currGrade.index(before: currGrade.endIndex)]
+                if (currGrade == self.grade! || currGrade == "A" || currGradeSS == self.grade!){
                     print("true")
                     self.studentNameList.append(item["name"] as! String)
                     self.prayerRequestDateList.append(item["date"] as! String)
                     self.prayerRequestList.append(item["prayerRequest"] as! String)
+                    self.prayerRequestGradeList.append(item["grade"] as! String)
                     self.prTableView.reloadData()
+                }
+                if (self.grade == "A"){
+                    if (lastLetter == "P"){
+                        print("true")
+                        self.studentNameList.append(item["name"] as! String)
+                        self.prayerRequestDateList.append(item["date"] as! String)
+                        self.prayerRequestList.append(item["prayerRequest"] as! String)
+                        self.prayerRequestGradeList.append(item["grade"] as! String)
+                        self.prTableView.reloadData()
+                    }
                 }
             }
         })

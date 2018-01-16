@@ -17,6 +17,7 @@ class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var welcomeText: UILabel!
     
     var announcementList: [String] = []
+    var announcementDetailsList: [String] = []
     var isLoggedIn: String = "Student"
     
     // Database Declarations.
@@ -39,6 +40,18 @@ class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "announcement")
         cell.textLabel?.text = announcementList[indexPath.row]
         return cell;
+    }
+    
+    // Pass data to the 'Show Announcement' VC
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showAnnouncement", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? ShowPrayerRequest {
+            destination.name = announcementList[(announcementTable.indexPathForSelectedRow?.row)!]
+            destination.pr = announcementDetailsList[(announcementTable.indexPathForSelectedRow?.row)!]
+        }
     }
     
     override func viewDidLoad() {
@@ -66,10 +79,12 @@ class Newsfeed : UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let item = snapshot.value as? [String:AnyObject]{
                 if (self.isLoggedIn == "Staff"){
                     self.announcementList.append(item["announcement"] as! String)
+                    self.announcementDetailsList.append(item["details"] as! String)
                 }
                 else{
                     if (item["person"] as! String == "Student"){
                         self.announcementList.append(item["announcement"] as! String)
+                        self.announcementDetailsList.append(item["details"] as! String)
                     }
                 }
                 self.announcementTable.reloadData()

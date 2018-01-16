@@ -34,10 +34,22 @@ class ShowPrayerRequest: UIViewController {
         prView.layer.cornerRadius = 10
         prView.layer.masksToBounds = true
         
+        prLabel.sizeToFit()
+        
         // Populate variables with the selected prayer request's details.
         studentLabel.text = name
-        gradeLabel.text = grade
-        dateLabel.text = date
+        if (grade == nil){
+            gradeLabel.alpha = 0
+        }
+        else{
+            gradeLabel.text = grade
+        }
+        if (date == nil){
+            dateLabel.alpha = 0
+        }
+        else {
+            dateLabel.text = date
+        }
         prLabel.text = pr
     }
 
